@@ -1,4 +1,4 @@
-import type { WorkflowDefinition } from "../types.js";
+import type { WorkflowDefinition } from "../../types.js";
 
 export const helloWorkflow: WorkflowDefinition = {
   id: "hello",

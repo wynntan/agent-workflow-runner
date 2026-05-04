@@ -7,7 +7,7 @@
     "awr": "./dist/cli.js"
   },
   "scripts": {
-    "build": "tsc -p tsconfig.json",
+    "build": "tsc -p tsconfig.json && node scripts/copy-workflow-assets.mjs",
     "dev": "tsx src/cli.ts",
     "check": "tsc -p tsconfig.json --noEmit",
     "example": "tsx src/cli.ts run hello"

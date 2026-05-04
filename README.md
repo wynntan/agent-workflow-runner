@@ -17,6 +17,8 @@ npm run example
 npm run dev -- run hello
 npm run dev -- run hello --var message=こんにちは
 npm run dev -- run hello --workspace-dir /path/to/project
+npm run dev -- run system-dev/feature-dev --workspace-dir /path/to/project --var task_name=my-feature --var requirement_file=/path/to/requirement.md
+npm run dev -- run system-dev/bugfix --workspace-dir /path/to/project --var task_name=my-bugfix --var bug_report_file=/path/to/bug-report.md
 npm run dev -- list
 ```
 
@@ -135,7 +137,7 @@ NODE`,
 };
 ```
 
-workflowを増やすときは `src/workflows/<id>.ts` に実装し、`src/workflows/index.ts` のregistryに追加します。あわせて [docs/workflows.md](docs/workflows.md) に追記します。
+workflowを増やすときは `src/workflows/<id>/index.ts` に実装し、必要なテンプレートや補助ファイルも同じdirectory配下に置きます。build時はworkflow配下の `.md` / `.mjs` / `.json` assetを `dist/` へコピーします。`src/workflows/index.ts` のregistryに追加し、[docs/workflows.md](docs/workflows.md) には一覧リンクだけを追記します。詳細仕様は `docs/workflows/` 配下の個別ファイルに記載します。
 
 ## LLM Tool Utilities
 
