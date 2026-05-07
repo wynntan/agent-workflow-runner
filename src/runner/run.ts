@@ -216,7 +216,11 @@ async function runStepCommand(runtime: RuntimeContext, step: WorkflowStepInput, 
   return runClaudeStep(runtime, step, index);
 }
 
-async function runShellStep(runtime: RuntimeContext, step: ShellStepInput, index: number): Promise<CommandResult> {
+async function runShellStep(
+  runtime: RuntimeContext,
+  step: Extract<WorkflowStepInput, { runner: "shell" }>,
+  index: number
+): Promise<CommandResult> {
   const cwd = resolveStepCwd(runtime, step.cwd);
   return runSpawnedCommand({
     command: "/bin/bash",
@@ -230,7 +234,11 @@ async function runShellStep(runtime: RuntimeContext, step: ShellStepInput, index
   });
 }
 
-async function runCodexStep(runtime: RuntimeContext, step: CodexStepInput, index: number): Promise<CommandResult> {
+async function runCodexStep(
+  runtime: RuntimeContext,
+  step: Extract<WorkflowStepInput, { runner: "codex" }>,
+  index: number
+): Promise<CommandResult> {
   const cd = resolveStepCwd(runtime, step.cd ?? step.cwd);
   return runCodexExec({
     instruction: step.instruction,
@@ -245,7 +253,11 @@ async function runCodexStep(runtime: RuntimeContext, step: CodexStepInput, index
   });
 }
 
-async function runClaudeStep(runtime: RuntimeContext, step: ClaudeStepInput, index: number): Promise<CommandResult> {
+async function runClaudeStep(
+  runtime: RuntimeContext,
+  step: Extract<WorkflowStepInput, { runner: "claude" }>,
+  index: number
+): Promise<CommandResult> {
   const cwd = resolveStepCwd(runtime, step.cwd);
   return runClaudePrompt({
     instruction: step.instruction,

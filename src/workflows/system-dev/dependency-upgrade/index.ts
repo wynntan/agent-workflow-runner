@@ -442,8 +442,7 @@ const ALLOWED_MODEL_STEPS = new Set([
 
 function parseModelAssignments(value: string): ModelAssignments {
   const assignments = new Map<string, string>();
-  for (const entry of value.split(/[\r
-,;]+/).map((item) => item.trim()).filter(Boolean)) {
+  for (const entry of value.split(/[\r\n,;]+/).map((item) => item.trim()).filter(Boolean)) {
     const separator = entry.indexOf("=");
     if (separator <= 0 || separator === entry.length - 1) {
       throw new Error(`Invalid model assignment "${entry}". Expected step=model.`);
